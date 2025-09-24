@@ -26,11 +26,14 @@
       grid-column: 1 / span 2;
     }
     h2 {
-      margin-top: 0;
-      font-size: 18px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 8px;
-    }
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  background-color: green;
+  color: white;          /* better contrast */
+  padding: 12px;         /* space around text */
+  border-radius: 8px;    /* optional: smooth corners */
+}
     .menu-boxes {
       display: flex;
       flex-direction: column;
@@ -64,35 +67,43 @@
   </style>
 </head>
 <body>
-
-  
-  
-    <div class="container">
-    <!-- Block 1: TAPS DATA -->
+<h2>WELCOME TO MGPL UNIT 2 SERVICES MAIN DASHBOARD PAGE</h2>
+<div class="container">
+    <!-- Block 1: HPDC AREA -->
     <div class="block">
-      <h2>HPDC DATA</h2>
       <div class="menu-boxes">
-        <a class="menu-box" href="https://script.google.com/macros/s/AKfycbzn4z82GcVBmxeC8q9mzz1B6SpKQ29cldJfrCigRVFiRFUFt_FdAjXRUwRtQrDr-kZl/exec?page=NewForm">ENTER HPDC PRODUCTION DATA</a>
-        <a class="menu-box" href="https://script.google.com/macros/s/AKfycby4zZ9j2csuOpXvcFTeQC4sLiuL7-AHoGLOOzOl2JUlb7Z_p_GB5hxT6e_dNFLZAdAU/exec?page=NewForm">ENTER FURNACE DATA</a>
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/hpdc.html">HPDC AREA MANAGEMENT</a>
       </div>
     </div>
 
-    <!-- Block 2: PRODUCTION DATA -->
+    <!-- Block 2: POST MOULDING AREA -->
     <div class="block">
-      <h2>RM DATA</h2>
       <div class="menu-boxes">
-        <a class="menu-box" href="https://mgplservices.github.io/unit2/main_page.html">(COMING SOON)</a>
+        <a class="menu-box" href="https://mgplservices.github.io/cnc_area_management/post_moulding.html">POST MOULDING AREA MANAGEMENT</a>
+      </div>
+    </div>
+      
+      <!-- Block 3: MACHINING AREA -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/machining.html">MACHINING AREA MANAGEMENT</a>
       </div>
     </div>
 
-      </div>
-<!-- Block 3: VIEW ALL DATA -->
-    <div class="block full-width">
-      <h2>VIEW DATA</h2>
+      <!-- Block 4: FINAL INSPECTION -->
+    <div class="block">
       <div class="menu-boxes">
-        <a class="menu-box" href="https://mgplservices.github.io/unit2/main_page.html"> (COMING SOON)</a>        
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/final_inspection.html">FINAL INSPECTION AREA MANAGEMENT</a>
       </div>
     </div>
+
+      <!-- Block 4: VIEW REPORTS -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/main_page.html">VIEW REPORTS</a>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
