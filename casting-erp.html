@@ -1,85 +1,162 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base target="_top">
+  <title>Casting ERP Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f6f8;
+    * {
+      box-sizing: border-box;
     }
-    header {
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+    }
+
+    /* LEFT SIDEBAR */
+    .sidebar {
+      width: 260px;
       background: #1f2937;
       color: #fff;
-      padding: 15px 20px;
-      font-size: 20px;
-      font-weight: bold;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 15px;
     }
-    .container {
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 1px solid #374151;
+      padding-bottom: 10px;
+    }
+
+    .menu-section {
+      margin-bottom: 20px;
+    }
+
+    .menu-section h3 {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .menu-item {
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .menu-item:hover {
+      background: #374151;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      flex: 1;
       padding: 20px;
+      overflow-y: auto;
     }
+
+    header {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+
+    /* KPI SECTION */
     .kpi-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
       margin-bottom: 25px;
     }
+
     .kpi {
       background: #ffffff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
+
     .kpi h2 {
       margin: 5px 0;
-      color: #1f2937;
+      font-size: 26px;
+      color: #111827;
     }
+
     .kpi p {
       margin: 0;
-      color: #6b7280;
       font-size: 14px;
+      color: #6b7280;
     }
-    .modules {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-    }
-    .module {
+
+    /* PLACEHOLDER PANELS */
+    .panel {
       background: #ffffff;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-      cursor: pointer;
-      transition: transform 0.2s;
-      text-align: center;
-    }
-    .module:hover {
-      transform: translateY(-4px);
-    }
-    .module span {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-      color: #1f2937;
-    }
-    footer {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 12px;
-      color: #9ca3af;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    CASTING ERP – HOME DASHBOARD
-  </header>
 
-  <div class="container">
+  <!-- LEFT MENU -->
+  <div class="sidebar">
+    <h2>CASTING ERP</h2>
 
-    <!-- KPI SECTION -->
+    <div class="menu-section">
+      <h3>Data Entry</h3>
+      <div class="menu-item" onclick="openApp('HPDC')">HPDC Production</div>
+      <div class="menu-item" onclick="openApp('FURNACE')">Furnace Reading</div>
+      <div class="menu-item" onclick="openApp('MACHINING')">Machining Production</div>
+      <div class="menu-item" onclick="openApp('FI')">Final Inspection</div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Inventory Management</h3>
+      <div class="menu-item" onclick="openApp('INWARD')">Add Inward Entry</div>
+      <div class="menu-item" onclick="openApp('QUALITY')">Quality Check</div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Customer Orders</h3>
+      <div class="menu-item" onclick="openApp('NEW_ORDER')">Create New Order</div>
+      <div class="menu-item" onclick="openApp('COMPLIANCE')">Check Compliance</div>
+    </div>
+
+    <div class="menu-section">
+      <h3>RM Management</h3>
+      <div class="menu-item" onclick="openApp('RM_INWARD')">RM Inward Entry</div>
+      <div class="menu-item" onclick="openApp('RM_QC')">RM Quality Check</div>
+      <div class="menu-item" onclick="openApp('RM_ORDER')">Order New RM</div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Master</h3>
+      <div class="menu-item" onclick="openApp('PART_MASTER')">Add New Part</div>
+      <div class="menu-item" onclick="openApp('RM_MASTER')">Add New RM</div>
+    </div>
+
+  </div>
+
+  <!-- MAIN DASHBOARD -->
+  <div class="main">
+
+    <header>ERP Dashboard</header>
+
+    <!-- KPI CARDS -->
     <div class="kpi-row">
       <div class="kpi">
         <h2 id="hpdcQty">--</h2>
@@ -91,46 +168,48 @@
       </div>
       <div class="kpi">
         <h2 id="downTime">--</h2>
-        <p>Downtime (Hrs)</p>
+        <p>Downtime (Hours)</p>
       </div>
       <div class="kpi">
         <h2 id="orders">--</h2>
-        <p>Orders Pending</p>
+        <p>Pending Orders</p>
       </div>
     </div>
 
-    <!-- MODULE LINKS -->
-    <div class="modules">
-      <div class="module" onclick="openApp('HPDC')">🔥<span>HPDC Production</span></div>
-      <div class="module" onclick="openApp('FURNACE')">🔥<span>Furnace Reading</span></div>
-      <div class="module" onclick="openApp('MACHINING')">⚙️<span>Machining</span></div>
-      <div class="module" onclick="openApp('FI')">🔍<span>Final Inspection</span></div>
-      <div class="module" onclick="openApp('INWARD')">📦<span>Inward Inspection</span></div>
-      <div class="module" onclick="openApp('ORDERS')">📑<span>Customer Orders</span></div>
-      <div class="module" onclick="openApp('REPORTS')">📊<span>Reports</span></div>
+    <!-- FUTURE PANELS -->
+    <div class="panel">
+      <h3>Production Summary</h3>
+      <p>Graph / trend / summary will appear here.</p>
     </div>
 
-    <footer>
-      Casting ERP | Google Apps Script Based
-    </footer>
+    <div class="panel">
+      <h3>Quality Alerts</h3>
+      <p>Top defects, alerts, CAPA reminders.</p>
+    </div>
 
   </div>
 
   <script>
     function openApp(app) {
-      google.script.run.openModule(app);
+      // For GitHub usage – open GAS Web App
+      window.open(APP_URLS[app], '_blank');
     }
 
-    function loadKPIs() {
-      google.script.run.withSuccessHandler(function(data) {
-        document.getElementById('hpdcQty').innerText = data.hpdc;
-        document.getElementById('rejPer').innerText = data.rejection + '%';
-        document.getElementById('downTime').innerText = data.downtime;
-        document.getElementById('orders').innerText = data.orders;
-      }).getDashboardKPIs();
-    }
+    const APP_URLS = {
+      HPDC: 'https://script.google.com/...',
+      FURNACE: 'https://script.google.com/...',
+      MACHINING: 'https://script.google.com/...',
+      FI: 'https://script.google.com/...',
+      INWARD: 'https://script.google.com/...',
+      QUALITY: 'https://script.google.com/...'
+    };
 
-    loadKPIs();
+    // KPI placeholder (later connect GAS / JSON)
+    document.getElementById('hpdcQty').innerText = 1250;
+    document.getElementById('rejPer').innerText = '2.1%';
+    document.getElementById('downTime').innerText = '1.8';
+    document.getElementById('orders').innerText = 6;
   </script>
+
 </body>
 </html>
