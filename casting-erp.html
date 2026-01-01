@@ -1,21 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Casting ERP</title>
-  <link rel="stylesheet" href="css/style.css">
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+    }
+    header {
+      background: #1f2937;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .kpi {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .kpi h2 {
+      margin: 5px 0;
+      color: #1f2937;
+    }
+    .kpi p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .module {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-align: center;
+    }
+    .module:hover {
+      transform: translateY(-4px);
+    }
+    .module span {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #1f2937;
+    }
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    CASTING ERP – HOME DASHBOARD
+  </header>
 
-<header>CASTING ERP – DASHBOARD</header>
+  <div class="container">
 
-<section class="modules">
-  <a href="https://script.google.com/...." target="_blank">HPDC Production</a>
-  <a href="https://script.google.com/...." target="_blank">Furnace Reading</a>
-  <a href="https://script.google.com/...." target="_blank">Machining</a>
-  <a href="https://script.google.com/...." target="_blank">Final Inspection</a>
-  <a href="https://script.google.com/...." target="_blank">Inward Inspection</a>
-  <a href="https://script.google.com/...." target="_blank">Orders & Compliance</a>
-</section>
+    <!-- KPI SECTION -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <h2 id="hpdcQty">--</h2>
+        <p>Today HPDC Qty</p>
+      </div>
+      <div class="kpi">
+        <h2 id="rejPer">--%</h2>
+        <p>Rejection %</p>
+      </div>
+      <div class="kpi">
+        <h2 id="downTime">--</h2>
+        <p>Downtime (Hrs)</p>
+      </div>
+      <div class="kpi">
+        <h2 id="orders">--</h2>
+        <p>Orders Pending</p>
+      </div>
+    </div>
 
+    <!-- MODULE LINKS -->
+    <div class="modules">
+      <div class="module" onclick="openApp('HPDC')">🔥<span>HPDC Production</span></div>
+      <div class="module" onclick="openApp('FURNACE')">🔥<span>Furnace Reading</span></div>
+      <div class="module" onclick="openApp('MACHINING')">⚙️<span>Machining</span></div>
+      <div class="module" onclick="openApp('FI')">🔍<span>Final Inspection</span></div>
+      <div class="module" onclick="openApp('INWARD')">📦<span>Inward Inspection</span></div>
+      <div class="module" onclick="openApp('ORDERS')">📑<span>Customer Orders</span></div>
+      <div class="module" onclick="openApp('REPORTS')">📊<span>Reports</span></div>
+    </div>
+
+    <footer>
+      Casting ERP | Google Apps Script Based
+    </footer>
+
+  </div>
+
+  <script>
+    function openApp(app) {
+      google.script.run.openModule(app);
+    }
+
+    function loadKPIs() {
+      google.script.run.withSuccessHandler(function(data) {
+        document.getElementById('hpdcQty').innerText = data.hpdc;
+        document.getElementById('rejPer').innerText = data.rejection + '%';
+        document.getElementById('downTime').innerText = data.downtime;
+        document.getElementById('orders').innerText = data.orders;
+      }).getDashboardKPIs();
+    }
+
+    loadKPIs();
+  </script>
 </body>
 </html>
