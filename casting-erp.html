@@ -204,11 +204,24 @@
       QUALITY: 'https://script.google.com/macros/s/AKfycbwdcpDKEEoXRLfNVpd5r1WnbjZi2EIRFXi-wk7CZ8MgYP8sJFH0xecS30AnHTJL-o7Pww/exec?page=FormB'
     };
 
-    // KPI placeholder (later connect GAS / JSON)
-    document.getElementById('hpdcQty').innerText = 1250;
-    document.getElementById('rejPer').innerText = '2.1%';
-    document.getElementById('downTime').innerText = '1.8';
-    document.getElementById('orders').innerText = 6;
+
+const API_URL = "https://script.google.com/macros/s/AKfycbyGncSRYvdEIaQJSjiLuxHlJeMVAw2ILdOMeeCkdDhvKjxeXQrYJbaOL1DSUGh3JC71UA/exec";
+
+function loadOEE() {
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('oee').innerText = data.oee + '%';
+      document.getElementById('availability').innerText = data.availability + '%';
+      document.getElementById('performance').innerText = data.performance + '%';
+      document.getElementById('quality').innerText = data.quality + '%';
+    })
+    .catch(err => console.error('OEE API error', err));
+}
+
+loadOEE();
+
+
   </script>
 
 </body>
