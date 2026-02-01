@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .block {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .full-width {
+      grid-column: 1 / span 2;
+    }
+    h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  background-color: green;
+  color: white;          /* better contrast */
+  padding: 12px;         /* space around text */
+  border-radius: 8px;    /* optional: smooth corners */
+}
+    .menu-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .menu-box {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 12px;
+      background: #fafafa;
+      text-align: center;
+      transition: background 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+    .menu-box:hover {
+      background: #e8f0fe;
+      transform: scale(1.02);
+    }
+    @media(max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .full-width {
+        grid-column: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+<h2>WELCOME TO MGPL UNIT 2 SERVICES MAIN DASHBOARD PAGE</h2>
+<div class="container">
+    <!-- Block 1: HPDC AREA -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/hpdc.html">HPDC AREA MANAGEMENT</a>
+      </div>
+    </div>
+
+    <!-- Block 2: POST MOULDING AREA -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/WIP.html">PLAN PRODUCTION FOR ALL AREAS</a>
+      </div>
+    </div>
+      
+      <!-- Block 3: MACHINING AREA -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/machine.html">MACHINING AREA MANAGEMENT</a>
+      </div>
+    </div>
+
+      <!-- Block 4: FINAL INSPECTION -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/final_inspection.html">FINAL INSPECTION AREA MANAGEMENT</a>
+      </div>
+    </div>
+
+      <!-- Block 5: VIEW REPORTS -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/vendor_management.html">VENDOR MANAGEMENT</a>
+      </div>
+    </div>
+
+  <!-- Block 6: Customer Daily Compliance -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/unit2/Orders_compliance.html">CUSTOMER ORDERS & COMPLIANCE MANAGEMENT</a>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+</html>
